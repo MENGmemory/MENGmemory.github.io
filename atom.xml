@@ -6,7 +6,7 @@
   <link href="http://poetryisland.cn/atom.xml" rel="self"/>
   
   <link href="http://poetryisland.cn/"/>
-  <updated>2021-02-12T13:05:01.734Z</updated>
+  <updated>2021-02-12T13:57:28.200Z</updated>
   <id>http://poetryisland.cn/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="http://poetryisland.cn/2021/02/12/hexo-move/"/>
     <id>http://poetryisland.cn/2021/02/12/hexo-move/</id>
     <published>2021-02-12T12:55:30.000Z</published>
-    <updated>2021-02-12T13:05:01.734Z</updated>
+    <updated>2021-02-12T13:57:28.200Z</updated>
     
-    <content type="html"><![CDATA[<p>最近终于有时间把之前hexo博客出现的问题解决了，而且因为某种原因连着重做了两次。</p><p>期间踩了n个坑，我主要归纳了三个坑的最严重的。</p><p>其实hexo的迁移并不难，步骤甚至非常简洁，网上的此类教程也有几个，下面这篇是写的比较清晰明白的一篇，附上链接：</p><p>｜ <a href="https://www.jianshu.com/p/4e068f4dd726" target="_blank" rel="noopener">https://www.jianshu.com/p/4e068f4dd726</a> </p>]]></content>
+    <content type="html"><![CDATA[<p>最近终于有时间把之前hexo博客出现的问题解决了，而且因为某种原因连着重做了两次。</p><p>期间踩了n个坑，我主要归纳了三个坑的最严重的。</p><p>其实hexo的迁移并不难，步骤甚至非常简洁，网上的此类教程也有几个，下面这篇是写的比较清晰明白的一篇，附上链接：</p><p>｜ <a href="https://www.jianshu.com/p/4e068f4dd726" target="_blank" rel="noopener">https://www.jianshu.com/p/4e068f4dd726</a> </p><p>主要步骤就是：</p><ol><li>装node、git、hexo，跟着官网的doc配置git的ssh</li><li>用hexo init新建一个blog website文件</li><li>用之前的hexo博客文档中的config，theme，source等关键文档替换掉新建的博客文件夹里面的对应文件</li><li>更新博客，完成迁移</li></ol><p>期间踩了n个坑，主要有三个坑的最严重的：</p><ol><li><p>部署后域名、gitpage访问不了，css文件加载有问题：需要调整config文件里的url、root等的配置，注意source文件夹下的cname文件不能丢，还有github账户名修改而引起的各种问题。</p></li><li><p>css格式丢失、主题文件丢失：建议直接更换主题，从官网上git clone重新下载主题，然后保存到themes文件夹下，修改博客的config文件和对应主题文件夹里的config文件。</p></li><li><p>node与hexo的版本问题导致<code>hexo d</code>时出现“mode”的版本问题：一般node版本会偏高，所以最好不要直接装node，先装nvm用来控制node的版本。</p></li></ol>]]></content>
     
     
       
