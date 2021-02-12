@@ -6,7 +6,7 @@
   <link href="http://poetryisland.cn/atom.xml" rel="self"/>
   
   <link href="http://poetryisland.cn/"/>
-  <updated>2021-02-10T07:52:04.000Z</updated>
+  <updated>2021-02-12T13:05:01.734Z</updated>
   <id>http://poetryisland.cn/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>hexo迁移三大坑</title>
+    <link href="http://poetryisland.cn/2021/02/12/hexo-move/"/>
+    <id>http://poetryisland.cn/2021/02/12/hexo-move/</id>
+    <published>2021-02-12T12:55:30.000Z</published>
+    <updated>2021-02-12T13:05:01.734Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近终于有时间把之前hexo博客出现的问题解决了，而且因为某种原因连着重做了两次。</p><p>期间踩了n个坑，我主要归纳了三个坑的最严重的。</p><p>其实hexo的迁移并不难，步骤甚至非常简洁，网上的此类教程也有几个，下面这篇是写的比较清晰明白的一篇，附上链接：</p><p>｜ <a href="https://www.jianshu.com/p/4e068f4dd726" target="_blank" rel="noopener">https://www.jianshu.com/p/4e068f4dd726</a> </p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;最近终于有时间把之前hexo博客出现的问题解决了，而且因为某种原因连着重做了两次。&lt;/p&gt;
+&lt;p&gt;期间踩了n个坑，我主要归纳了三个坑的最严重的。&lt;/p&gt;
+&lt;p&gt;其实hexo的迁移并不难，步骤甚至非常简洁，网上的此类教程也有几个，下面这篇是写的比较清晰明白的一篇，附上链接：&lt;</summary>
+      
+    
+    
+    
+    
+    <category term="博客搭建 hexo" scheme="http://poetryisland.cn/tags/博客搭建-hexo/"/>
+    
+  </entry>
   
   <entry>
     <title>网络中的市场与策略性互动</title>
@@ -505,30 +529,6 @@
     <category term="sklearn" scheme="http://poetryisland.cn/tags/sklearn/"/>
     
     <category term="集成学习，随机森林" scheme="http://poetryisland.cn/tags/集成学习，随机森林/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ANN简介基于TensorFlow</title>
-    <link href="http://poetryisland.cn/2019/11/06/A8E255A0-8354-4CBC-A3C9-37F780898882/"/>
-    <id>http://poetryisland.cn/2019/11/06/A8E255A0-8354-4CBC-A3C9-37F780898882/</id>
-    <published>2019-11-06T15:01:41.000Z</published>
-    <updated>2019-11-06T15:01:42.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="ANN简介基于TensorFlow"><a href="#ANN简介基于TensorFlow" class="headerlink" title="ANN简介基于TensorFlow"></a>ANN简介基于TensorFlow</h1><h2 id="感知器"><a href="#感知器" class="headerlink" title="感知器"></a>感知器</h2><p>基于被称为基于线性阈值单元（LTU）的人工神经元：输入输出都是数字，每个输入连接对应一个权重，LTU加权求和所有输入，然后对求值结果应用于哥阶跃函数并产生最后的输出。</p><ul><li>Heavisider阶跃函数</li><li>Hebbian学习：当两个神经元有相同输出时，他们间的连接权重就会被增强。</li><li><p>Scikit-learn的Perceptron类实现</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">From sklearn.linear_model import Perception</span><br><span class="line">Per_clf = Perception(random_state=42)</span><br></pre></td></tr></table></figure></li><li><p>多层感知器（MLP）和反向传播<br>对每个训练实例，反向传播算法先正向进行一次预测，度量误差，然后反向遍历每个层次来度量每个连接的误差贡献度，最后微调每个连接的权重来降低误差（梯度下降）。</p></li><li>激活函数：双曲正切函数和RELU函数<h2 id="TensorFlow训练MLP"><a href="#TensorFlow训练MLP" class="headerlink" title="TensorFlow训练MLP"></a>TensorFlow训练MLP</h2><h3 id="最简单方式：使用TF-Learn"><a href="#最简单方式：使用TF-Learn" class="headerlink" title="最简单方式：使用TF.Learn"></a>最简单方式：使用TF.Learn</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Feature_columns = tf.contrib.learn.infer_real_valued_columns_from(X_train)</span><br><span class="line">Dnn_clf = tf.contrib.learn.DNNClassifier(hidden_units=[300,100], n_classes=10, features_columns=feature_columns)</span><br><span class="line">#activation_fn调整激活函数</span><br><span class="line">Dnn_clf.fit(X=X_train, y=y_train, batch_size=50, steps=40000)</span><br></pre></td></tr></table></figure></li></ul><p>DNNClassifier背后默认基于relu激活函数创建所有神经元层次，输出层softmax，成本函数是交叉熵。</p><h3 id="纯TensorFlow训练DNN"><a href="#纯TensorFlow训练DNN" class="headerlink" title="纯TensorFlow训练DNN"></a>纯TensorFlow训练DNN</h3><p>构建阶段<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line">Import tensorflow as tf</span><br><span class="line"></span><br><span class="line">#模型参数设置</span><br><span class="line">N_inputs = </span><br><span class="line">N_hidden1 =</span><br><span class="line">N_hidden2 =</span><br><span class="line">N_outputs =</span><br><span class="line"></span><br><span class="line">#占位符节点表示输入与目标</span><br><span class="line">X = tf.placeholder(tf.float32, shape=(None, n_inputs), name=“X”)</span><br><span class="line">y = tf.placeholder(tf.int32, shape=(None), name=“y”)</span><br><span class="line"></span><br><span class="line">#神经网络层</span><br><span class="line">Def neuron_layer（X， n_neurons, name, activation=None）:</span><br><span class="line">with tf.name_scope(“name”):</span><br><span class="line">n_inputs = int(X.get_shape()[1])</span><br><span class="line"></span><br><span class="line">studdev = 2/np.sqrt(n_inputs)</span><br><span class="line">init = tf.truncated_normal((n_inputs, n_neurons), studded=stddev)</span><br><span class="line">#tf.truncated_normal(shape，mean=0.0，stddev=1.0, dtype,seed=None, name=None)用于从截断的正态分布中输出随机值</span><br><span class="line">#shape输出张量的形状</span><br><span class="line">#mean是正态分布均值</span><br><span class="line">#sddev是正太分布的标准差</span><br><span class="line">#dtpye指输出的类型</span><br><span class="line">#产生的数据-均值&lt;=2*标准差</span><br><span class="line">#使用一个指定的标准偏差会让算法熟练的更快</span><br><span class="line"></span><br><span class="line">W = tf.Variable(init, name=“Weights”)</span><br><span class="line">b = tf.Variavle(tf.zeros([n_neurons]),name=“bias” )</span><br><span class="line">z = tf.matmul(X,W)+b</span><br><span class="line">if activation == “relu”:</span><br><span class="line">return tf.nn.relu(z)</span><br><span class="line">else:</span><br><span class="line">return z</span><br><span class="line"></span><br><span class="line">#创建神经网络</span><br><span class="line">with tf.name_scope(“dnn”):</span><br><span class="line">hidden1 = neuron_layer(X, n_hidden1, “hidden1”, activation=“relu”)</span><br><span class="line">hidden2 = neuron_layer(X, n_hidden2, “hidden2”, activation=“relu”)</span><br><span class="line">logits = neuron_layer(hidden2,  n_outputs, “outputs”)</span><br><span class="line"></span><br><span class="line">#使用full_conntected创建全连接层</span><br><span class="line">From tensorflow.contrib.layers import fully_connected</span><br><span class="line"></span><br><span class="line">With tf.name_scope(“dnn”):</span><br><span class="line">hidden1 = fully_connected(X, n_hidden1, scope=“hidden1”)</span><br><span class="line">hidden2 = fully_connected(hidden1, n_hidden2, scope=“hidden2”)</span><br><span class="line">logits = fully_connected(hidden2, n_outputs, scope=“outputs”, activation_fn=None)</span><br><span class="line"></span><br><span class="line">#损失函数</span><br><span class="line">with tf.name_scope(“loss”):</span><br><span class="line">x_centropy = tf.nn.sparse_softmax_cross_entropy_with_logits(labels=y, logits=logits)</span><br><span class="line">#根据logits计算交叉熵，计算出每个实例的交叉熵的一维张量</span><br><span class="line">loss = tf.reduce_mean(xentropy, name=“loss”)</span><br><span class="line">#计算所有实例的平均交叉熵</span><br><span class="line"></span><br><span class="line">Learning_rate = 0.01</span><br><span class="line">#梯度下降优化器</span><br><span class="line">with tf.name_scope(“train”):</span><br><span class="line">optimizer = tf.train.GradientDescentOptimizer(learning_rate)</span><br><span class="line">training_op = optimizer.minimizer(loss)</span><br><span class="line"></span><br><span class="line">#对模型求值</span><br><span class="line">with tf.name_scope(“eval”):</span><br><span class="line">correct = tf.nn.in_top_k(logits, y, 1)</span><br><span class="line">#判断target/y是否在前top k/1的预测logits之中，输出batch_size大小的预测数组</span><br><span class="line">#此处即看y是否等于logits的最大数的索引值</span><br><span class="line">accuracy = tf.reduce_mean(tf.cast(correct, tf.float32))</span><br><span class="line">#tf.cast（x，dtype）将输入x转换为目标类型，返回一个张量，此处把bool型转化为float32来进行求平均计算</span><br><span class="line">#tf.reduce_mean()计算张量沿指定轴的平均值，axis=None则求全局</span><br><span class="line">#axis=n求平均，可以看作把张量第n维变为1 ？</span><br><span class="line">#保存</span><br><span class="line">init = tf.global_variables_initializer()</span><br><span class="line">Saver = tf.train.Saver()</span><br></pre></td></tr></table></figure></p><p>执行阶段<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">From tensorflow.examples.tutorials.mnist import input_data</span><br><span class="line">Mnist = input_data.read_data_sets(“/temp/data”)</span><br><span class="line"></span><br><span class="line">N_epochs = 400</span><br><span class="line">Batch_size = 50</span><br><span class="line"></span><br><span class="line">With tf.Session() as sess:</span><br><span class="line">init.run()</span><br><span class="line">for epoch in range(n_epochs):</span><br><span class="line">for iteration in range(mnist.train.num_examples// batch_size):</span><br><span class="line">X_batch, y_batch = mnist.train.next_batch(batch_size)</span><br><span class="line">sess.run(training_op, feed_dict=&#123;X:X_batch, y:y_batch&#125;)</span><br><span class="line">acc_train = accuracy.eval(feed_dict=&#123;X:X_batch, y:y_batch&#125;)</span><br><span class="line">acc_test = accuracy.eval(feed_dict=&#123;X:mnist.test.images, y:mnist.test.labels&#125;)</span><br><span class="line">print(“”)</span><br><span class="line">save_path = saver.save(sess, “./model_final.ckpt”)</span><br></pre></td></tr></table></figure></p><p>使用神经网络<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">With tf.Session() as sess:</span><br><span class="line">saver.restore(sess, “./model_final.ckpt”)</span><br><span class="line">X_new_scaled = [...]</span><br><span class="line">Z = logits.eval(feed_dict=&#123;X: X_new_scaled&#125;)</span><br><span class="line">y_pred = np.argmax(Z, axis=1)</span><br></pre></td></tr></table></figure></p><h2 id="微调超参数"><a href="#微调超参数" class="headerlink" title="微调超参数"></a>微调超参数</h2><ul><li>随机搜素法</li><li>隐藏层的个数调整<br>深层网络比浅层网络有更高的参数效率，可以用更少的神经元建模复杂函数，加快训练，提高对新数据集的泛化能力。</li><li>每层神经元数<br>增加每层的神经元数量会比增加层数产生更多消耗。</li><li>更多的层次和神经元，提前结束训练，被称为“弹力裤”方法。</li><li>激活函数<br>大多情况可以在隐藏层中用ReLU<br>对于输出层：softmax对于互斥的分类任务是个不错的选择，回归任务可以不用激活函数</li></ul>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;ANN简介基于TensorFlow&quot;&gt;&lt;a href=&quot;#ANN简介基于TensorFlow&quot; class=&quot;headerlink&quot; title=&quot;ANN简介基于TensorFlow&quot;&gt;&lt;/a&gt;ANN简介基于TensorFlow&lt;/h1&gt;&lt;h2 id=&quot;感知器&quot;&gt;</summary>
-      
-    
-    
-    
-    <category term="深度学习" scheme="http://poetryisland.cn/categories/深度学习/"/>
-    
-    
-    <category term="Tensorflow" scheme="http://poetryisland.cn/tags/Tensorflow/"/>
     
   </entry>
   
